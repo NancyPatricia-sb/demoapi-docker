@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE_NAME: demoapi-6-1
+  IMAGE_NAME: demoapi-docker
 
 jobs:
   docker-publish:
@@ -27,9 +27,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: 6-1
-          file: 6-1/Dockerfile
+          context: DemoApi
+          file: DemoApi/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
-#            ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/demoapi-docker:latest
